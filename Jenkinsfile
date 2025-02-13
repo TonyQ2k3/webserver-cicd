@@ -1,10 +1,19 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'nodejs'
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
                 checkout scm
+            }
+        }
+        stage('Check version') {
+            steps {
+                sh 'npm --version'
             }
         }
         stage('Install Dependencies') {
