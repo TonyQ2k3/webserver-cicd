@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:23-alpine3.20' }
+    }
 
     tools {
         nodejs 'nodejs'
@@ -10,12 +12,7 @@ pipeline {
             steps {
                 checkout scm
             }
-        }
-        stage('Check version') {
-            steps {
-                sh 'npm --version'
-            }
-        }
+        }    
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
