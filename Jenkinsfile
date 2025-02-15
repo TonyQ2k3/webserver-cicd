@@ -3,10 +3,6 @@ pipeline {
         docker { image 'node:23-alpine3.20' }
     }
 
-    tools {
-        nodejs 'nodejs'
-    }
-
     stages {
         stage('Clone Repository') {
             steps {
