@@ -12,26 +12,16 @@ pipeline {
                 checkout scm
             }
         }    
-        stage('Getting files') {
+        stage('Install Dependencies') {
             steps {
-                sh 'ls'
+                sh 'npm install'
             }
         }
-        stage('Checking folder') {
+        stage('Run Tests') {
             steps {
-                sh 'pwd'
+                sh 'npm test'
             }
         }
-        // stage('Install Dependencies') {
-        //     steps {
-        //         sh 'npm install'
-        //     }
-        // }
-        // stage('Run Tests') {
-        //     steps {
-        //         sh 'npm test'
-        //     }
-        // }
     }
 
     post {
