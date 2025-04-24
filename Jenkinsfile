@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        docker { image 'node:23-alpine3.20' }
+        docker { 
+            image 'node:23-alpine3.20' 
+            args '-u root:root' // Run as root user to avoid permission issues}
+        }
     }
 
     stages {
