@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     tools {
         nodejs 'node21'
     }
@@ -28,6 +28,9 @@ pipeline {
     }
 
     post {
+        always {
+            cleanWs()  // This cleans the workspace
+        }
         success {
             echo 'Build succeeded!'
         }
