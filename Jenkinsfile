@@ -1,9 +1,16 @@
 pipeline {
     agent {
         docker { 
-            image 'node:23-alpine3.20' 
-            args '-u root:root' // Run as root user to avoid permission issues}
+            image 'node:21.7.0' 
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
+    }
+    tools {
+        nodejs 'node21'
+    }
+
+    environment {
+        CI = 'true'
     }
 
     stages {
@@ -30,6 +37,9 @@ pipeline {
         }
         failure {
             echo 'Build failed!'
+        }
+        always {
+            cleanWs()
         }
     }
 }
