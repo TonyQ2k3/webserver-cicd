@@ -7,6 +7,8 @@ pipeline {
 
     environment {
         CI = 'true'
+        BRANCH_NAME = "${env.BRANCH_NAME}"
+        CHANGE_TARGET = "${env.CHANGE_TARGET}" // For PRs
     }
 
     stages {
@@ -39,7 +41,7 @@ pipeline {
                         if (relevantFiles.isEmpty()) {
                             echo "No .js or .json file changes. Skipping build."
                             currentBuild.result = 'NOT_BUILT'
-                            error("Build skipped: No relevant changes.")
+                            success("Build skipped: No relevant changes.")
                         } else {
                             echo "Relevant changes detected:\n${relevantFiles.join('\n')}"
                         }
