@@ -29,4 +29,5 @@ Handles comment management
 ### Step 4: Setup webhook
 1. Access GitHub repo
 2. Go to `Settings` > `Webhooks`
-3. Add "https://ngrok-url/github-web
+3. Payload URL: "https://ngrok-url/github-webhook"
+4. Content type: "application/json"
