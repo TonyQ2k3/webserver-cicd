@@ -1,3 +1,5 @@
+@Library 'jenkins-shared-lib' _
+
 pipeline {
     agent any
 
@@ -7,8 +9,9 @@ pipeline {
 
     environment {
         CI = 'true'
-        BRANCH_NAME = "${env.BRANCH_NAME}"
-        CHANGE_TARGET = "${env.CHANGE_TARGET}" // For PRs
+        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
+        DOCKER_IMAGE_NAME = 'webserver'
+        DOCKER_IMAGE_TAG = 'latest'
     }
 
     stages {
@@ -25,6 +28,15 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh 'npm test'
+            }
+        }
+        stage('Build and push Docker image') {
+            steps {
+                dockerBuildAndPush(
+                    imageName: DOCKER_IMAGE_NAME,
+                    tag: DOCKER_IMAGE_TAG,
+                    credentialsId: DOCKER_CREDENTIALS_ID
+                )
             }
         }
     }
