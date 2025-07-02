@@ -5,6 +5,7 @@ pipeline {
 
     tools {
         nodejs 'node21'
+        dockerTool 'docker'
     }
 
     environment {
