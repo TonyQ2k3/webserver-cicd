@@ -41,7 +41,6 @@ pipeline {
                         echo "No .js or .json file changes. Skipping build."
                         currentBuild.result = 'SUCCESS'
                         return
-
                     } else {
                         echo "Relevant changes detected:\n${relevantFiles.join('\n')}"
                     }

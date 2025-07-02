@@ -56,4 +56,4 @@ Install the Multibranch Scan Webhook Trigger plugin.
 ### Step 4: Create a Github Webhook
 1. Add a webhook and choose `pull_request` and `push`
 2. Payload URL: <Jenkins_URL>/multibranch-webhook-trigger/invoke?token=<token>
-
+  
