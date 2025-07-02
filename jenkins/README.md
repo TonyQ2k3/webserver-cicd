@@ -14,3 +14,12 @@ docker compose up -d
 
 ngrok http 8088
 ```
+
+# Shared libraries
+
+## 1. Folder structure
++ `/src`: Contains Groovy classes and methods, will be added to pipeline's classpath
++ `/vars`: Define functions that are exposed as global variables. 
++ `/resources`: Contains resources (shell scripts etc)
+
+### 2. 
