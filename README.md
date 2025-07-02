@@ -36,7 +36,7 @@ Handles comment management
 This pipeline run when there's a commit pushed or merged to any branch, or when a PR is created.
 
 ### Step 1: Install plugins
-Install the Multibranch Scan Webhook Trigger plugin.
+Install the [Multibranch Scan Webhook Trigger](https://plugins.jenkins.io/multibranch-scan-webhook-trigger/) and [Pipeline: Multibranch build strategy extension](https://plugins.jenkins.io/multibranch-build-strategy-extension/) plugin.
 
 ### Step 2: Create Github credential
 1. Create a new Jenkins Credential
@@ -51,7 +51,10 @@ Install the Multibranch Scan Webhook Trigger plugin.
 3. Scan repository triggers:
     + Scan by webhook (from Multibranch Scan Webhook Trigger)
     + Trigger token: anything
-4. Save
+4. Build Strategies:
+    + Cancel build by excluded regions strategy
+    + Enter wildcards of any file you want to ignore
+5. Save
 
 ### Step 4: Create a Github Webhook
 1. Add a webhook and choose `pull_request` and `push`
