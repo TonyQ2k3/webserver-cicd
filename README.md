@@ -1,4 +1,4 @@
-# API Gateway
+# Simple NodeJS AppMore actions
 
 ## About
 Handles comment management
@@ -31,3 +31,28 @@ Handles comment management
 2. Go to `Settings` > `Webhooks`
 3. Payload URL: "https://ngrok-url/github-webhook"
 4. Content type: "application/json"
+
+## Multi-branch pipeline (recommended)
+This pipeline run when there's a commit pushed or merged to any branch, or when a PR is created.
+
+### Step 1: Install plugins
+Install the Multibranch Scan Webhook Trigger plugin.
+
+### Step 2: Create Github credential
+1. Create a new Jenkins Credential
+2. Choose username and password
+3. Username: Github user; Password: Github Access Token
+
+### Step 3: Create a job
+1. Branch sources: Github
+2. Behaviors: 
+    + Discover branches: All branches
+    + Discover pull requests from origin: The current PR revision
+3. Scan repository triggers:
+    + Scan by webhook (from Multibranch Scan Webhook Trigger)
+    + Trigger token: anything
+4. Save
+
+### Step 4: Create a Github Webhook
+1. Add a webhook and choose `pull_request` and `push`
+2. Payload URL: <Jenkins_URL>/multibranch-webhook-trigger/invoke?token=<token>
