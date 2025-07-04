@@ -22,4 +22,38 @@ ngrok http 8088
 + `/vars`: Define functions that are exposed as global variables. 
 + `/resources`: Contains resources (shell scripts etc)
 
-### 2. 
+## 2. Usage
+
+
+# Credentials
+In Jenkins, `withCredentials` is used to use a secret credential in the pipeline.
+## 1. Username and Password
+```groovy
+withCredentials([usernamePassword(
+    credentialsId: 'my-cred',
+    usernameVariable: 'USERNAME',
+    passwordVariable: 'PASSWORD'
+)]) {
+    sh 'echo $USERNAME $PASSWORD'
+}
+```
+
+## 2. Secret Text
+```groovy
+withCredentials([string(
+    credentialsId: 'my-cred',
+    variable: 'SECRET'
+)]) {
+    sh 'echo $SECRET'
+}
+```
+
+## 3. SSH Key
+```groovy
+withCredentials([sshUserPrivateKey(
+    credentialsId: 'my-cred',
+    keyVariable: 'SSH-KEY'
+)]) {
+    sh 'ssh -i $KEY user@host'
+}
+```

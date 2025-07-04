@@ -11,6 +11,7 @@ pipeline {
     environment {
         CI = 'true'
         DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
+        DOCKER_ORGANIZATION = 'tonyq2k3'
         DOCKER_IMAGE_NAME = 'webserver'
         DOCKER_IMAGE_TAG = 'latest'
     }
@@ -34,6 +35,7 @@ pipeline {
         stage('Build and push Docker image') {
             steps {
                 dockerBuildAndPush(
+                    organization: DOCKER_ORGANIZATION,
                     imageName: DOCKER_IMAGE_NAME,
                     tag: DOCKER_IMAGE_TAG,
                     credentialsId: DOCKER_CREDENTIALS_ID
